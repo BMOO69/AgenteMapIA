@@ -1,9 +1,9 @@
-from Model import Grafo
 from Model.Arist import Arist
+from Model.Grafo import Grafo
 
 
-class GrafoNoDirigido(Grafo.Grafo):
+class GrafoNoDirigido(Grafo):
     def addArist(self, arist):
-        Grafo.Grafo.addArist(self, arist)
+        Grafo.addArist(self, arist)
         aristBack = Arist(arist.getVertexOrigin(), arist.getVertexDest())
-        Grafo.Grafo.addArist(self, aristBack)
+        Grafo.addArist(self, aristBack)

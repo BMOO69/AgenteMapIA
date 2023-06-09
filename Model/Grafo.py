@@ -1,5 +1,5 @@
-from Vertexx import *
-
+from Model.Vertexx import Vertexx
+from Model.Arist import *
 
 class Grafo():
     def __init__(self):
@@ -46,3 +46,4 @@ class Grafo():
             for j in self.grafoDiccionario[i]:
                 allVertex += i.getName() + "---> " + j.getName() + "\n"  # a donde puedes ir de este nodo
         return allVertex
+
