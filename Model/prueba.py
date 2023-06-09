@@ -32,9 +32,9 @@ def buildGrafo(graph):
     g.addArist(Arist(g.getVertex('n9'), g.getVertex('n10')))
     g.addArist(Arist(g.getVertex('n10'), g.getVertex('e6')))
     g.addArist(Arist(g.getVertex('n6'), g.getVertex('n11')))
+    g.addArist(Arist(g.getVertex('n7'), g.getVertex('n2')))  # el grafo dirigido tiene 24 aristas
+    return g                                                 # el grafo no dirigido tiene 48 aristas
+    #arreglar el alritmos de bidireccion de grafo en el metodo grafo no dirijido
 
-    return g
-
-
-g1 = buildGrafo(Grafo)
+g1 = buildGrafo(GrafoNoDirigido)
 print(g1)
