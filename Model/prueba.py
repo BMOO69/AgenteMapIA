@@ -1,4 +1,5 @@
 from GrafoNoDirigido import *
+from Model.Arist import *
 
 
 def buildGrafo(graph):
