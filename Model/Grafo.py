@@ -11,7 +11,6 @@ class Grafo():
 
         assert isinstance(vertexx, Vertexx)
         self.grafoDiccionario[vertexx] = []
-        print("agrego una arista")
 
     def addArist(self, aristt):
         origen = aristt.getVertexOrigin()
@@ -44,6 +43,6 @@ class Grafo():
         allVertex = ""
 
         for i in self.grafoDiccionario:  # todos los origenes o llaves
-            for j in self.grafoDiccionario:
+            for j in self.grafoDiccionario[i]:
                 allVertex += i.getName() + "---> " + j.getName() + "\n"  # a donde puedes ir de este nodo
         return allVertex
