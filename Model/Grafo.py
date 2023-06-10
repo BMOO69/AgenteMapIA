@@ -44,6 +44,7 @@ class Grafo():
 
         for i in self.grafoDiccionario:  # todos los origenes o llaves
             for j in self.grafoDiccionario[i]:
-                allVertex += i.getName() + "---> " + j.getName() + "\n"  # a donde puedes ir de este nodo
+               # allVertex += i.getName()  +"---> " + j.getName() + "\n"  # a donde puedes ir de este nodo
+                allVertex += i.getName()+" (" + str(i.getX())+","+str(i.getY()) +") ---> "+j.getName()+" ("+str(j.getX())+","+str(j.getY())+")\n"
         return allVertex
 
