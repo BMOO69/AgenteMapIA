@@ -4,6 +4,7 @@ from Model.Arist import *
 class Grafo():
     def __init__(self):
         self.grafoDiccionario = {}
+        self.nodes =[]
 
     def addVertex(self, vertexx):
         if vertexx in self.grafoDiccionario:
@@ -11,6 +12,9 @@ class Grafo():
 
         assert isinstance(vertexx, Vertexx)
         self.grafoDiccionario[vertexx] = []
+        self.nodes.append((vertexx.getName(),(vertexx.getX(),vertexx.getY())))
+    def getNodes(self):
+        return self.nodes
 
     def addArist(self, aristt):
         origen = aristt.getVertexOrigin()
@@ -46,5 +50,11 @@ class Grafo():
             for j in self.grafoDiccionario[i]:
                # allVertex += i.getName()  +"---> " + j.getName() + "\n"  # a donde puedes ir de este nodo
                 allVertex += i.getName()+" (" + str(i.getX())+","+str(i.getY()) +") ---> "+j.getName()+" ("+str(j.getX())+","+str(j.getY())+")\n"
+                               # nombre 1         x1               y1                       nombre 2          x2             y2
         return allVertex
 
+    def getNodes(self):
+        var = []
+        for i in self.grafoDiccionario:
+            for j in self.grafoDiccionario[1]:
+                var.append((i.g))
