@@ -13,7 +13,7 @@ class Grafo():
         assert isinstance(vertexx, Vertexx)
         self.grafoDiccionario[vertexx] = []
         self.nodes.append((vertexx.getName(),(vertexx.getX(),vertexx.getY())))
-    def getNodes(self):
+    def getNodeslist(self):
         return self.nodes
 
     def addArist(self, aristt):
@@ -52,9 +52,3 @@ class Grafo():
                 allVertex += i.getName()+" (" + str(i.getX())+","+str(i.getY()) +") ---> "+j.getName()+" ("+str(j.getX())+","+str(j.getY())+")\n"
                                # nombre 1         x1               y1                       nombre 2          x2             y2
         return allVertex
-
-    def getNodes(self):
-        var = []
-        for i in self.grafoDiccionario:
-            for j in self.grafoDiccionario[1]:
-                var.append((i.g))

@@ -20,6 +20,10 @@ class ManagerFile(object):
         fileedge.close()
         return listAr
 
+    def obtenerNodesMana(self,graph):
+        var = graph.getNodeslist()
+        return var
+        #print("prueba funciona la obteccion de nodos")
     def obGrafoSinText(self,graph):
         #g = GrafoNoDirigido()
         g = graph()
@@ -42,7 +46,7 @@ class ManagerFile(object):
         g.addVertex(Vertexx('n8', 150, 150))
         g.addVertex(Vertexx('n9', 220, 150))
         g.addVertex(Vertexx('n10', 280, 150))
-        g.addVertex(Vertexx('n11', 290, 100))
+        g.addVertex(Vertexx('n11', 290, 100)) #numero de nodos o vertices es de 20 :(
 
         g.addArist(Arist(g.getVertex('e1'), g.getVertex('n1')))
         g.addArist(Arist(g.getVertex('n1'), g.getVertex('n2')))

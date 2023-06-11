@@ -1,16 +1,17 @@
-from io import open
+from Model.ManagerFile import *
+from Model.GrafoNoDirigido import *
+from Model.Vertexx import *
 
-from Model.Grafo import Grafo
-
-#archivoGrafo = open("Model/grafos.txt","w")
-
-#lista = archivoGrafo.readlines()
-
-#g = Grafo()
-
-import os
-import sys
-
+manage = ManagerFile()
+grafo = manage.obGrafoSinText(GrafoNoDirigido)
+nodos = manage.obtenerNodesMana(grafo)
+# print(nodos)
+lis = ('e1', (30, 90))
+ve = Vertexx('e1', 30, 90)
+Vertexx('e1', 30, 90)
+# print(grafo.getVertex(Vertexx('e1', 30, 90)))
 
 if __name__ == "__main__":
-    print(os.path.dirname(sys.executable))
+    print("funciona?:")
+
+    print(grafo.getVertex(ve))
