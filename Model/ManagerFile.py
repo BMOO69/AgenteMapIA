@@ -27,26 +27,26 @@ class ManagerFile(object):
     def obGrafoSinText(self,graph):
         #g = GrafoNoDirigido()
         g = graph()
-        g.addVertex(Vertexx('e1', 30, 90))
-        g.addVertex(Vertexx('e2', 140, 30))
-        g.addVertex(Vertexx('e3', 220, 30))
-        g.addVertex(Vertexx('e4', 280, 60))
-        g.addVertex(Vertexx('e5', 310, 60))
-        g.addVertex(Vertexx('e6', 300, 200))
-        g.addVertex(Vertexx('e7', 220, 200))
-        g.addVertex(Vertexx('e8', 130, 200))
-        g.addVertex(Vertexx('e9', 30, 190))
-        g.addVertex(Vertexx('n1', 70, 90))
-        g.addVertex(Vertexx('n2', 120, 100))
-        g.addVertex(Vertexx('n3', 220, 60))
-        g.addVertex(Vertexx('n4', 280, 60))
-        g.addVertex(Vertexx('n5', 160, 110))
-        g.addVertex(Vertexx('n6', 220, 110))
-        g.addVertex(Vertexx('n7', 70, 160))
-        g.addVertex(Vertexx('n8', 150, 150))
-        g.addVertex(Vertexx('n9', 220, 150))
-        g.addVertex(Vertexx('n10', 280, 150))
-        g.addVertex(Vertexx('n11', 290, 100)) #numero de nodos o vertices es de 20 :(
+        g.addVertex(Vertexx('e1', (30, 90)))
+        g.addVertex(Vertexx('e2', (140, 30)))
+        g.addVertex(Vertexx('e3', (220, 30)))
+        g.addVertex(Vertexx('e4', (280, 60)))
+        g.addVertex(Vertexx('e5', (310, 60)))
+        g.addVertex(Vertexx('e6', (300, 200)))
+        g.addVertex(Vertexx('e7', (220, 200)))
+        g.addVertex(Vertexx('e8', (130, 200)))
+        g.addVertex(Vertexx('e9', (30, 190)))
+        g.addVertex(Vertexx('n1', (70, 90)))
+        g.addVertex(Vertexx('n2', (120, 100)))
+        g.addVertex(Vertexx('n3', (220, 60)))
+        g.addVertex(Vertexx('n4', (280, 60)))
+        g.addVertex(Vertexx('n5', (160, 110)))
+        g.addVertex(Vertexx('n6', (220, 110)))
+        g.addVertex(Vertexx('n7', (70, 160)))
+        g.addVertex(Vertexx('n8', (150, 150)))
+        g.addVertex(Vertexx('n9', (220, 150)))
+        g.addVertex(Vertexx('n10', (280, 150)))
+        g.addVertex(Vertexx('n11', (290, 100)))#numero de nodos o vertices es de 20 :(
 
         g.addArist(Arist(g.getVertex('e1'), g.getVertex('n1')))
         g.addArist(Arist(g.getVertex('n1'), g.getVertex('n2')))
@@ -74,11 +74,6 @@ class ManagerFile(object):
         g.addArist(Arist(g.getVertex('n7'), g.getVertex('n2')))
         return g
 
-    #def getVertexx(self):
-     #   edges = []
-      #  for i in data.grafoDiccionario:
-       #     for j in data.grafoDiccionario[i]:
-        #        edges.append((i.getName(), j.getName()))
 
 
 """"   def obGrafoSinText(self):

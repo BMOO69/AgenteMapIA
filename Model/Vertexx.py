@@ -1,13 +1,12 @@
 class Vertexx:
 
-    def __init__(self, name, posX, posY):
+    def __init__(self, name, posXY):
         self.name = name
-        self.posX = posX
-        self.posY = posY
+        self.posXY = posXY
 
 
     def __hash__(self):
-        return hash((self.name, self.posX, self.posY))
+        return hash((self.name, self.posXY))
     def __eq__(self, other):
         if isinstance(other, Vertexx):
             if other.getName() == self.name:
@@ -18,13 +17,10 @@ class Vertexx:
     def getName(self):
         return self.name
 
-    def getY(self):
-        return self.posY
-
-    def getX(self):
-        return self.posX
+    def getXY(self):
+        return self.posXY
 
     def __str__(self) -> str:
-        return self.name
+        return self.name+str(self.posXY)
 
 
