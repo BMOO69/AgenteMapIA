@@ -29,8 +29,12 @@ class AppWindow(ctk.CTk):
         self.options_frame.columnconfigure(0,weight=1)
 
 
-        self.img_frame = ctk.CTkFrame(self.main_frame, width=700,height=400)
-        self.img_frame.grid(row=0, column=1, sticky=tk.NSEW, ipadx=10, ipady=10, padx=(0, 10))
+        #self.img_frame = ctk.CTkFrame(self.main_frame, width=700,height=400)
+        #self.img_frame.grid(row=0, column=1, sticky=tk.NSEW, ipadx=10, ipady=10, padx=(0, 10))
+        ##error prueba
+        self.img_frame = ctk.CTkCanvas(self.main_frame, width=700, height=400, bg="#0E6063")
+        self.img_frame.grid(row=0, column=1, sticky=tk.NSEW, ipadx=10, ipady=10, padx=(0,10))
+        ##error prueba
 
         self.map_label = ctk.CTkLabel(self.img_frame, text="AQUI ESTARA EL MAPA", font=ctk.CTkFont(size=20, weight="bold"))
         self.map_label.place(relx=0.5, rely=0.5, anchor=tk.CENTER)

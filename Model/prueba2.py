@@ -1,8 +1,9 @@
+from Model.GrafoNoDirigido import GrafoNoDirigido
 from Model.ManagerFile import ManagerFile
 
 pr = ManagerFile()
 
-g = pr.obGrafoSinText()
+g = pr.obGrafoSinText(GrafoNoDirigido)
 
 
 if __name__ == "__main__":
