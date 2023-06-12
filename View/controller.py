@@ -10,8 +10,9 @@ class Controller():
         self.grafo = self.manage.obGrafoSinText(self.grafo)
         self.nodes = self.manage.obtenerNodesMana(self.grafo)
 
-        self.draw_Nodes()
         self.drawBackground()
+        self.draw_Nodes()
+
         #self.app.send_agent_button.configure(command=lambda: self.run_algorithm())
         self.app.send_agent_button.configure(command=lambda: self.draw_Nodes())
 

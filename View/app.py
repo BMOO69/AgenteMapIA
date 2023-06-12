@@ -27,10 +27,11 @@ class AppWindow(ctk.CTk):
 
         self.img_frame = ctk.CTkCanvas(self.main_frame, width=1200, height=650, bg="#0E6063")
         self.img_frame.grid(row=0, column=1, sticky=tk.NSEW, ipadx=10, ipady=10, padx=(0,10))
-
-        self.map_label = ctk.CTkLabel(self.img_frame, text="AQUI ESTARA EL MAPA", font=ctk.CTkFont(size=20, weight="bold"))
+        """
+        self.map_label = ctk.CTkLabel(self.img_frame, font=ctk.CTkFont(size=20, weight="bold"))
+         
         self.map_label.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
-
+aqui estarara el mapa"""
         self.label = ctk.CTkLabel(self.options_frame, text="AGENTES IA")
         self.label.grid(row=0, column=0, sticky=tk.NSEW)
 
