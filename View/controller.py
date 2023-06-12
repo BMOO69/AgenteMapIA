@@ -36,7 +36,7 @@ class Controller():
 
 
     def drawEdge(self,x1,y1,x2,y2):
-        self.app.img_frame.create_line(x1, y1, x2, y2, fill="red", width=3)
+        self.app.img_frame.create_line(x1, y1, x2, y2, fill="#7DA0CA", width=3)
 
     def drawPath(self):
         pass
@@ -48,5 +48,5 @@ class Controller():
             node = nod.getXY()
             node_id = nod.getName()
             (x, y) = node
-            self.app.img_frame.create_oval(x - 10, y - 10, x + 10, y + 10, fill="red")
+            self.app.img_frame.create_oval(x - 10, y - 10, x + 10, y + 10, fill="blue")
             self.app.img_frame.create_text(x, y, text=node_id)
