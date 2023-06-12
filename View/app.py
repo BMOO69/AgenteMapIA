@@ -1,5 +1,4 @@
 import customtkinter as ctk
-import os
 import tkinter as tk
 
 from View.controller import Controller
