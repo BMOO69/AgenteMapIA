@@ -74,7 +74,7 @@ class Controller():
 
     def draw_Nodes(self):
         self.nodes
-        pass
+
         for nod in self.nodes:
             node = nod.getXY()
             node_id = nod.getName()
