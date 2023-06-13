@@ -24,6 +24,7 @@ class Controller():
         goal = self.app.entry_destination.get()
         ini = self.grafo.getVertex(start)
         fin = self.grafo.getVertex(goal)
+        print(type(ini))
         path = self.buscar_nodo_en_grafo(self.grafo.grafoDiccionario, ini, fin)
 
         self.drawPath(path)
