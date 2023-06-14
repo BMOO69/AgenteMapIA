@@ -46,7 +46,6 @@ class Controller():
                 visitados.add(nodo)
                 for vecino in grafo[nodo]:
                     cola.append((vecino, camino + [nodo]))
-
         return None
 
     def drawBackground(self):
@@ -58,7 +57,6 @@ class Controller():
                 self.drawEdge(node_origin[0],node_origin[1], node_dest[0],node_dest[1], "#7DA0CA")
 
     def drawPath(self, path):
-
         if path[0] != None:
             start = path[0]
             for fs in range(1,len(path)):
@@ -66,7 +64,6 @@ class Controller():
                 node_dest = path[fs].getXY()
                 self.drawEdge(node_origin[0], node_origin[1], node_dest[0], node_dest[1], "red")
                 start = path[fs]
-
         else:
             print("esta vacia")
 
