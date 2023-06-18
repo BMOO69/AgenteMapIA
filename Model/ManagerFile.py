@@ -2,12 +2,12 @@ from io import open
 
 from Model.Arist import Arist
 from Model.Vertexx import Vertexx
-
+import tkinter as tk
 
 class ManagerFile(object):
 
     __instance = None
-
+    end = False
     def __new__(cls, *args, **kwargs):
         if ManagerFile.__instance is None:
             ManagerFile.__instance = object.__new__(cls)
@@ -26,6 +26,7 @@ class ManagerFile(object):
     def obGrafoSinText(self,graph):
         #g = GrafoNoDirigido()
         g = graph()
+        g.addVertex()
         g.addVertex(Vertexx('e1', (13, 83)))
         g.addVertex(Vertexx('e2', (13, 346)))
         g.addVertex(Vertexx('e3', (13, 570)))
@@ -96,7 +97,67 @@ class ManagerFile(object):
         g.addArist(Arist(g.getVertex('e6'), g.getVertex('n6')))
         g.addArist(Arist(g.getVertex('n3'), g.getVertex('n4')))
         return g
+
+
+    
+
+    def addNode(grafo,nomb, punto):
+        grafo.addVertex(nomb,(punto))
+
+    def finish(rot):
+        print("¡Finalizado!")
+        rot.destroy()  # Cierra la ventana principal
+        end = True
+        return end
+    def get_coordinates(event):
+            x = event.x
+            y = event.y
+            print("Coordenadas: ({}, {})".format(x, y))
+            return x, y
+
+
+    def construirGraph(self,graph):
+        g = graph()
+
+        root = tk.Tk()
+
+        # Carga la imagen
+        image_path = "view/mapa.png"  # Reemplaza con la ruta de tu imagen
+        image = tk.PhotoImage(file=image_path)
+
+        # Crea un lienzo para mostrar la imagen
+        canvas = tk.Canvas(root, width=image.width(), height=image.height())
+        canvas.pack()
+
+        # Dibuja la imagen en el lienzo
+        canvas.create_image(0, 0, image=image, anchor=tk.NW)   
+
+        while(end!=True):
+            
+            
+            # Crea el botón "Finalizar"
+            finish_button = tk.Button(root, text="Finalizar", command=finish(root))
+            finish_button.pack()
+            # Crea el cuadro de texto (TextArea)
+            coordinates_text = tk.Text(root, height=10, width=40)
+            coordinates_text.pack()
+
+            # Asocia el evento de clic a la función get_coordinates
+            coordenadas = canvas.bind("<Button-1>", get_coordinates)
+            print(coordenadas)
+            addNode(g,coordinates_text,coordenadas)
+            root.mainloop()
+            print(g)
+        return g
+
+
+
+
 """
+
+
+
+
 #Todo: este es el grafo anterior con valores incorrectos
 
         g.addVertex(Vertexx('e1', (10, 228)))

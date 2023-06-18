@@ -1,6 +1,9 @@
 import time
 import tkinter as tk
 from collections import deque
+import sys
+sys.path.append('D:/TONIO/trabajos/IA/ia carmen/AgenteMapIA/')
+import Model
 
 from Model.GrafoNoDirigido import GrafoNoDirigido
 from Model.ManagerFile import ManagerFile
@@ -9,7 +12,8 @@ class Controller():
         self.app = app
         self.manage = ManagerFile()
         self.grafo = GrafoNoDirigido
-        self.grafo = self.manage.obGrafoSinText(self.grafo)
+        self.grafo = self.manage.construirGraph(self.grafo)
+        # self.grafo = self.manage.obGrafoSinText(self.grafo)
         self.nodes = self.manage.obtenerNodesMana(self.grafo)
 
         self.drawBackground()
