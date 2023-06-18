@@ -10,12 +10,13 @@ def obtener_coordenadas(event):
 ven = ctk.CTk()
 can = ctk.CTkCanvas(ven, width="1300",height="750")
 can.pack()
-ima = Image.open("mapa.png")
+ima = Image.open("imagenes/mapa.png")
 nuevaima = ima.resize((1200, 650))
 
 gf = ImageTk.PhotoImage(nuevaima)
 
-imagen = tk.PhotoImage(file="mapa.png")
+imagen = tk.PhotoImage(file="imagenes/mapa.png")
 can.create_image(10,10, anchor=tk.NW, image = gf)
 can.bind("<Button-1>", obtener_coordenadas)
 ven.mainloop()
+
