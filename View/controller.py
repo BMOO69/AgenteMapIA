@@ -48,6 +48,7 @@ class Controller():
                     cola.append((vecino, camino + [nodo]))
         return None
 
+
     def drawBackground(self):
         for n in self.nodes:
             valor = self.grafo.grafoDiccionario[n]
