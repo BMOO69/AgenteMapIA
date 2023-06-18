@@ -76,7 +76,8 @@ class ImageGraphBuilder:
         self.is_finished = True
         messagebox.showinfo("Finalizar", "La acción ha sido finalizada.")
 
-    def boton1():
+
+def boton1():
             print("precionado")
             ImageGraphBuilder(imagen).on_image_click
 
@@ -102,7 +103,7 @@ menu_frame = Frame(root)
 menu_frame.pack()
 
 button1 = Button(menu_frame, text="Seleccionar Nodos")
-button = tk.Button(root, text="Presionar", command=boton1)
+button = tk.Button(root, text="Presionar", command = boton1)
 button1.pack()
 
 button2 = Button(menu_frame, text="Botón 2")
