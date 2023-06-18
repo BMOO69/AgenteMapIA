@@ -1,28 +1,22 @@
 import heapq
 
-from Model.Vertexx import Vertexx
-from Model.GrafoNoDirigido import *
-from Model.ManagerFile import ManagerFile
-
 def heuristic(node, goal):
     # Función heurística, en este caso, la distancia Manhattan
     return abs(node.x - goal.x) + abs(node.y - goal.y)
 
 def astar(graph, start, goal):
     # Inicialización
-    ini = start.getXY()
-    fin = goal.getXY()
     open_list = []
     closed_list = set()
-    heapq.heappush(open_list, (0, ini))
-    g_scores = {ini: 0}
+    heapq.heappush(open_list, (0, start))
+    g_scores = {start: 0}
     parents = {}
 
     while open_list:
         # Selección del nodo con menor f(n)
         current_cost, current_node = heapq.heappop(open_list)
 
-        if current_node == fin:
+        if current_node == goal:
             # Se ha encontrado el objetivo, reconstruir el camino
             path = []
             while current_node in parents:
@@ -55,8 +49,15 @@ class Objeto:
         self.x = x
         self.y = y
 
-# Grafo de ejemplo representado como un diccionario
+    def __eq__(self, other):
+        return isinstance(other, Objeto) and self.x == other.x and self.y == other.y
 
+    def __hash__(self):
+        return hash((self.x, self.y))
+
+    def __lt__(self, other):
+        return False
+# Grafo de ejemplo representado como un diccionario
 graph = {
     Objeto(0, 0): [Objeto(1, 0), Objeto(0, 1)],
     Objeto(1, 0): [Objeto(0, 0), Objeto(1, 1)],
@@ -64,15 +65,10 @@ graph = {
     Objeto(1, 1): [Objeto(1, 0), Objeto(0, 1)]
 }
 
-#start_node = Objeto(0, 0)
-#goal_node = Objeto(1, 1)
+start_node = Objeto(0, 0)
+goal_node = Objeto(1, 1)
 
-ini = Vertexx('e1', (13, 83))
-des = Vertexx('n13', (765, 286))
-
-gra = ManagerFile.obGrafoSinText(GrafoNoDirigido)
-
-path = astar(gra, ini, des)
+path = astar(graph, start_node, goal_node)
 
 if path:
     print("Ruta encontrada:")
@@ -81,5 +77,8 @@ if path:
 else:
     print("No se encontró una ruta válida.")
 
+
 if __name__ == "__main__":
-    print("hola undo")
+    print("hola mundo")
+
+

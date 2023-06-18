@@ -1,28 +1,22 @@
 import heapq
 
-from Model.Vertexx import Vertexx
-from Model.GrafoNoDirigido import *
-from Model.ManagerFile import ManagerFile
-
 def heuristic(node, goal):
     # Función heurística, en este caso, la distancia Manhattan
-    return abs(node.x - goal.x) + abs(node.y - goal.y)
+    return abs(node[0] - goal[0]) + abs(node[1] - goal[1])
 
 def astar(graph, start, goal):
     # Inicialización
-    ini = start.getXY()
-    fin = goal.getXY()
     open_list = []
     closed_list = set()
-    heapq.heappush(open_list, (0, ini))
-    g_scores = {ini: 0}
+    heapq.heappush(open_list, (0, start))
+    g_scores = {start: 0}
     parents = {}
 
     while open_list:
         # Selección del nodo con menor f(n)
         current_cost, current_node = heapq.heappop(open_list)
 
-        if current_node == fin:
+        if current_node == goal:
             # Se ha encontrado el objetivo, reconstruir el camino
             path = []
             while current_node in parents:
@@ -36,7 +30,7 @@ def astar(graph, start, goal):
 
         # Exploración de vecinos
         for neighbor in graph[current_node]:
-            g_score = g_scores[current_node] + 1  # Costo unitario para cada vecino
+            g_score = g_scores[current_node] + graph[current_node][neighbor]
             if neighbor not in g_scores or g_score < g_scores[neighbor]:
                 # Actualización del costo y el padre
                 g_scores[neighbor] = g_score
@@ -49,37 +43,24 @@ def astar(graph, start, goal):
 
 # Ejemplo de uso
 
-# Clase para representar los objetos en el grafo
-class Objeto:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
-# Grafo de ejemplo representado como un diccionario
-
-graph = {
-    Objeto(0, 0): [Objeto(1, 0), Objeto(0, 1)],
-    Objeto(1, 0): [Objeto(0, 0), Objeto(1, 1)],
-    Objeto(0, 1): [Objeto(0, 0), Objeto(1, 1)],
-    Objeto(1, 1): [Objeto(1, 0), Objeto(0, 1)]
-}
-
-#start_node = Objeto(0, 0)
-#goal_node = Objeto(1, 1)
-
-ini = Vertexx('e1', (13, 83))
-des = Vertexx('n13', (765, 286))
-
-gra = ManagerFile.obGrafoSinText(GrafoNoDirigido)
-
-path = astar(gra, ini, des)
-
-if path:
-    print("Ruta encontrada:")
-    for node in path:
-        print(f"({node.x}, {node.y})")
-else:
-    print("No se encontró una ruta válida.")
+# Grafo de ejemplo
 
 if __name__ == "__main__":
-    print("hola undo")
+    print("hola algo.py")
+
+    graphs = {
+        'A': {'B': 5, 'C': 10},
+        'B': {'A': 5, 'C': 2, 'D': 1},
+        'C': {'A': 10, 'B': 2, 'D': 6},
+        'D': {'B': 1, 'C': 6}
+    }
+
+    start_node = 'A'
+    goal_node = 'D'
+
+    path = astar(graphs, start_node, goal_node)
+
+    if path:
+        print(f"Ruta encontrada: {path}")
+    else:
+        print("No se encontró una ruta válida.")

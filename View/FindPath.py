@@ -1,6 +1,5 @@
 
-
-class FindPath:
-    pass
+print("hola mundo")
+print("hola mundo")
 
 

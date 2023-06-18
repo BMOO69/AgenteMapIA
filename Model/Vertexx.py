@@ -14,6 +14,8 @@ class Vertexx:
         else:
             return False
 
+    def __lt__(self, other):
+        return False
     def getName(self):
         return self.name
 
