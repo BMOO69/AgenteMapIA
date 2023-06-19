@@ -1,3 +1,6 @@
+
+import sys
+sys.path.append('C:/Users/WILFR/ProjectoIA/Final/AgenteMapIA')
 import heapq
 import math
 from collections import deque

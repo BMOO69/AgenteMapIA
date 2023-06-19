@@ -1,4 +1,6 @@
 
+import sys
+sys.path.append('C:/Users/WILFR/ProjectoIA/Final/AgenteMapIA')
 import heapq
 import math
 import time
@@ -83,19 +85,19 @@ class Controller():
 
     def draw_Nodes(self):
         self.nodes
-        imagen_cole = Image.open("imagenes/colegio.png")
+        imagen_cole = Image.open("View\imagenes\colegio.png")
         imagen_redi_cole = imagen_cole.resize((30,30))
         imagen_tk_cole = ImageTk.PhotoImage(imagen_redi_cole)
 
-        imagen_park = Image.open("imagenes/parque.png")
+        imagen_park = Image.open("View\imagenes\parque.png")
         imagen_redi_park = imagen_park.resize((40, 40))
         imagen_tk_park = ImageTk.PhotoImage(imagen_redi_park)
 
-        imagen_hosp = Image.open("imagenes/hospital.png")
+        imagen_hosp = Image.open("View\imagenes\hospital.png")
         imagen_redi_hosp = imagen_hosp.resize((40, 40))
         imagen_tk_hosp = ImageTk.PhotoImage(imagen_redi_hosp)
 
-        imagen_mall = Image.open("imagenes/mall.png")
+        imagen_mall = Image.open("View\imagenes\mall.png")
         imagen_redi_mall = imagen_mall.resize((40, 40))
         imagen_tk_mall = ImageTk.PhotoImage(imagen_redi_mall)
 
@@ -123,7 +125,7 @@ class Controller():
                                      text=node_id, text_color="black")
                 self.app.img_frame.create_window(x, y, window=label)
             else:
-                self.app.img_frame.create_oval(x - 15, y - 15, x + 15, y + 15, fill="blue")
+                self.app.img_frame.create_oval(x - 15, y - 15, x + 15, y + 15, fill="cyan")
                 self.app.img_frame.create_text(x, y, text=node_id)
 
     def draw_Nodes2(self):
