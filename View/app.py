@@ -34,7 +34,6 @@ class AppWindow(ctk.CTk):
         self.img_frame.grid(row=0, column=1, sticky=tk.NSEW, ipadx=10, ipady=10, padx=(0,10))
         self.img_frame.create_image(10, 10, image=self.gf, anchor=tk.NW)
 
-        #canvas.bind("<Button-1>", obtener_coordenadas)
         """
         self.map_label = ctk.CTkLabel(self.img_frame, font=ctk.CTkFont(size=20, weight="bold"))
          
@@ -74,3 +73,6 @@ aqui estarara el mapa"""
         pass
 app = AppWindow()
 ctr = Controller(app)
+if __name__ == "__main__":
+
+    print("asdasd")
