@@ -1,3 +1,5 @@
+from tkinter import colorchooser
+
 import customtkinter as ctk
 import tkinter as tk
 from PIL import ImageTk, Image
@@ -16,6 +18,7 @@ class AppWindow(ctk.CTk):
         self.geometry("1200x580")
         self.resizable(False,False)
         self.update_idletasks()
+        self.color = "red"
 
         self.main_frame = ctk.CTkFrame(self,width=1200,height=650)
         self.main_frame.columnconfigure(0, weight=1)
@@ -58,10 +61,17 @@ aqui estarara el mapa"""
         self.send_agent_button.grid(row=5, column=0, sticky=tk.NSEW, pady=5, padx=5)
 
         self.option_algorith= ctk.CTkOptionMenu(self.options_frame, values=["BFS", "A*", "BIDIRECCIONAL"])
-        self.option_algorith.grid(row=6, column=0, sticky=tk.NSEW, pady=5, padx=5)
+        self.option_algorith.grid(row=7, column=0, sticky=tk.NSEW, pady=5, padx=5)
+
+        self.select_color = ctk.CTkButton(self.options_frame, text="Seleciona el color", command=lambda: self.abrir_selector_color())
+        self.select_color.grid(row=6, column=0, sticky=tk.NSEW, pady=5, padx=5)
 
         self.main_frame.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
 
+    def abrir_selector_color(self):
+        colorr = colorchooser.askcolor(title="Seleccionar color")
+        if colorr[1] is not None:
+            self.color= colorr[1]
     def clean_roads(self):
         pass
 

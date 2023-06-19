@@ -69,7 +69,8 @@ class Controller():
             for fs in range(1,len(path)):
                 node_origin = (start.getX(),start.getY())
                 node_dest = (path[fs].getX(),path[fs].getY())
-                self.drawEdge(node_origin[0], node_origin[1], node_dest[0], node_dest[1], "red")
+                #self.drawEdge(node_origin[0], node_origin[1], node_dest[0], node_dest[1], "red")
+                self.drawEdge(node_origin[0], node_origin[1], node_dest[0], node_dest[1], self.app.color)
                 #self.drawEdge(start.getX(), start.getY(), path[fs].getY(),path[fs].getY(), "red")
                 start = path[fs]
         else:
