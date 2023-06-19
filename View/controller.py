@@ -69,14 +69,21 @@ class Controller():
 
     def drawPath(self, path):
         if path[0] != None:
+            Fdistancia = 0
             start = path[0]
             for fs in range(1,len(path)):
-                node_origin = (start.getX(),start.getY())
-                node_dest = (path[fs].getX(),path[fs].getY())
+                node_origin = start
+                node_dest = path[fs]
+                distance = self.distance(node_origin, node_dest)
+                print(f"Distancia entre {node_origin.getName()} y {node_dest.getName()}: {distance}")
+                Fdistancia += distance
                 #self.drawEdge(node_origin[0], node_origin[1], node_dest[0], node_dest[1], "red")
-                self.drawEdge(node_origin[0], node_origin[1], node_dest[0], node_dest[1], self.app.color)
+                self.drawEdge(node_origin.getX(), node_origin.getY(), node_dest.getX(), node_dest.getY(), self.app.color)
                 #self.drawEdge(start.getX(), start.getY(), path[fs].getY(),path[fs].getY(), "red")
                 start = path[fs]
+            print(f"distancia total: {int(Fdistancia)} metros")
+            tiempo = Fdistancia/1.1
+            print(f"tiempo estimado: {int(tiempo/60)} minutos")
         else:
             print("esta vacia")
 
@@ -137,3 +144,12 @@ class Controller():
 
             self.app.img_frame.create_oval(x - 15, y - 15, x + 15, y + 15, fill="blue")
             self.app.img_frame.create_text(x, y, text=node_id)
+
+    def distance(self, node1, node2):
+        x1 = node1.getX()
+        y1 = node1.getY()
+        x2 = node2.getX()
+        y2 = node2.getY()
+        distance = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+        return distance
+    

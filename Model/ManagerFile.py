@@ -97,6 +97,7 @@ class ManagerFile():
         g.addArist(Arist(g.getVertex('mall3'), g.getVertex('parque4')))
         return g
 
+
 # Todo El grafo dirigido tiene 24 aristas
 # Todo el grafo no dirigido tiene 48 aristas
 # arreglar el alritmos de bidireccion de grafo en el metodo grafo no dirijido

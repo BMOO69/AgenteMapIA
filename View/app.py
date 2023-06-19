@@ -64,9 +64,10 @@ aqui estarara el mapa"""
 
         self.select_color = ctk.CTkButton(self.options_frame, text="Seleciona el color", command=lambda: self.abrir_selector_color())
         self.select_color.grid(row=6, column=0, sticky=tk.NSEW, pady=5, padx=5)
-
+        
         self.main_frame.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
-
+        
+        
     def abrir_selector_color(self):
         colorr = colorchooser.askcolor(title="Seleccionar color")
         if colorr[1] is not None:
