@@ -1,12 +1,17 @@
 import heapq
 
-from Model.GrafoNoDirigido import GrafoNoDirigido
-from Model.ManagerFile import ManagerFile
+class Objeto:
+    def __init__(self, name, x, y):
+        self.name = name
+        self.x = x
+        self.y = y
 
+    def __repr__(self):
+        return self.name
 
 def heuristic(node, goal):
     # Función heurística, en este caso, la distancia Manhattan
-    return abs(node[1][0] - goal[1][0]) + abs(node[1][1] - goal[1][1])
+    return abs(node.x - goal.x) + abs(node.y - goal.y)
 
 def astar(graph, start, goal):
     # Inicialización
@@ -48,23 +53,15 @@ def astar(graph, start, goal):
 # Ejemplo de uso
 
 # Grafo de ejemplo representado como un diccionario
-"""
 graph = {
-    ("A", (0, 0)): [("B", (1, 0)), ("C", (0, 1))],
-    ("B", (1, 0)): [("A", (0, 0)), ("D", (1, 1))],
-    ("C", (0, 1)): [("A", (0, 0)), ("D", (1, 1))],
-    ("D", (1, 1)): [("B", (1, 0)), ("C", (0, 1))]
+    Objeto("A", 0, 0): [Objeto("B", 1, 0), Objeto("C", 0, 1)],
+    Objeto("B", 1, 0): [Objeto("A", 0, 0), Objeto("D", 1, 1)],
+    Objeto("C", 0, 1): [Objeto("A", 0, 0), Objeto("D", 1, 1)],
+    Objeto("D", 1, 1): [Objeto("B", 1, 0), Objeto("C", 0, 1)]
 }
 
-start_node = ("A", (0, 0))
-goal_node = ("D", (1, 1))
-"""
-manage = ManagerFile()
-grafon = GrafoNoDirigido
-
-graph = manage.obGrafoSinText(grafon)
-
-
+start_node = Objeto("A", 0, 0)
+goal_node = Objeto("D", 1, 1)
 
 path = astar(graph, start_node, goal_node)
 
@@ -76,4 +73,4 @@ else:
     print("No se encontró una ruta válida.")
 
 if __name__ == "__main__":
-    print("hola")
+    print("holita")

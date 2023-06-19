@@ -59,9 +59,13 @@ class Controller():
         for n in self.nodes:
             valor = self.grafo.grafoDiccionario[n]
             for nod in valor:
-                node_origin = n.getXY()
-                node_dest = nod.getXY()
-                self.drawEdge(node_origin[0],node_origin[1], node_dest[0],node_dest[1], "#7DA0CA")
+                #node_origin = n.getXY()
+                #node_dest = nod.getXY()
+                node_ori_x = n.getX()
+                node_ori_y = n.getY()
+                node_dest_x = nod.getX()
+                node_dest_y = nod.getY()
+                self.drawEdge(node_ori_x,node_ori_y, node_dest_x,node_dest_y, "#7DA0CA")
 
     def drawPath(self, path):
         if path[0] != None:
@@ -96,7 +100,7 @@ class Controller():
         imagen_tk_mall = ImageTk.PhotoImage(imagen_redi_mall)
 
         for nod in self.nodes:
-            node = nod.getXY()
+            node = (nod.getX(),nod.getY())
             node_id = nod.getName()
             (x, y) = node
             var = "".join(filter(lambda char: not char.isdigit(), node_id))
