@@ -25,7 +25,7 @@ class Controller():
         self.draw_Nodes()
 
         self.app.send_agent_button.configure(command=lambda: self.run_algorithm())
-
+        self.app.clear_button.configure(command=lambda: self.clear())
         self.app.mainloop()
 
     def run_algorithm(self):
@@ -134,3 +134,6 @@ class Controller():
 
             self.app.img_frame.create_oval(x - 15, y - 15, x + 15, y + 15, fill="blue")
             self.app.img_frame.create_text(x, y, text=node_id)
+
+    def clear(self):
+        self.drawBackground()

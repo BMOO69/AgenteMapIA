@@ -37,11 +37,6 @@ class AppWindow(ctk.CTk):
         self.img_frame.grid(row=0, column=1, sticky=tk.NSEW, ipadx=10, ipady=10, padx=(0,10))
         self.img_frame.create_image(10, 10, image=self.gf, anchor=tk.NW)
 
-        """
-        self.map_label = ctk.CTkLabel(self.img_frame, font=ctk.CTkFont(size=20, weight="bold"))
-         
-        self.map_label.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
-aqui estarara el mapa"""
         self.label = ctk.CTkLabel(self.options_frame, text="AGENTES IA")
         self.label.grid(row=0, column=0, sticky=tk.NSEW)
 
@@ -57,14 +52,21 @@ aqui estarara el mapa"""
         self.entry_destination = ctk.CTkEntry(self.options_frame, placeholder_text="ingrese el destino")
         self.entry_destination.grid(row=4, column=0, sticky=tk.NSEW, pady=5, padx=5)
 
-        self.send_agent_button = ctk.CTkButton(self.options_frame, text="Enviar",command=lambda: self.buscar_ruta())
+        self.send_agent_button = ctk.CTkButton(self.options_frame, text="Enviar", command=lambda: self.buscar_ruta())
         self.send_agent_button.grid(row=5, column=0, sticky=tk.NSEW, pady=5, padx=5)
 
-        self.option_algorith= ctk.CTkOptionMenu(self.options_frame, values=["BFS", "A*", "BIDIRECCIONAL"])
-        self.option_algorith.grid(row=7, column=0, sticky=tk.NSEW, pady=5, padx=5)
-
-        self.select_color = ctk.CTkButton(self.options_frame, text="Seleciona el color", command=lambda: self.abrir_selector_color())
+        self.select_color = ctk.CTkButton(self.options_frame, text="Seleciona el color",command=lambda: self.abrir_selector_color())
         self.select_color.grid(row=6, column=0, sticky=tk.NSEW, pady=5, padx=5)
+
+        self.clear_button = ctk.CTkButton(self.options_frame, text="Clear")
+        self.clear_button.grid(row=7, column=0, sticky=tk.NSEW, pady=5, padx=5)
+
+        self.option_algorith= ctk.CTkOptionMenu(self.options_frame, values=["BFS", "A*", "BIDIRECCIONAL"])
+        self.option_algorith.grid(row=8, column=0, sticky=tk.NSEW, pady=5, padx=5)
+
+        self.text_box = ctk.CTkTextbox(self.options_frame, width=100, height=200)
+        self.text_box.grid(row=9,column=0,sticky=tk.NSEW, pady=5, padx=5)
+        self.text_box.configure(state="disabled")
 
         self.main_frame.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
 

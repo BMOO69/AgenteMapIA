@@ -20,3 +20,5 @@ can.create_image(10,10, anchor=tk.NW, image = gf)
 can.bind("<Button-1>", obtener_coordenadas)
 ven.mainloop()
 
+if __name__ == "__main__":
+    print("holis")
