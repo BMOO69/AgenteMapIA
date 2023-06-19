@@ -8,16 +8,7 @@ class Vertexx:
     def __hash__(self):
         return hash((self.name, self.x, self.y))
     def __eq__(self, other):
-<<<<<<< HEAD
-        if isinstance(other, Vertexx):
-            if other.getName() == self.name and self.posXY == other.posXY:
-                return True
-        else:
-            return False
-=======
         return isinstance(other, Vertexx)and self.name==other.name and self.x == other.x and self.y == other.y
-
->>>>>>> pruebaContro
 
     def __lt__(self, other):
         return False
