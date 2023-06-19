@@ -65,3 +65,4 @@ if __name__ == "__main__":
     print("holita")
     print(type(path))
     print(type(path[0]))
+    print(path)

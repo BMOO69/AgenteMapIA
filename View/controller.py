@@ -10,7 +10,7 @@ from PIL.ImageTk import PhotoImage
 
 from Model.GrafoNoDirigido import GrafoNoDirigido
 from Model.ManagerFile import ManagerFile
-
+from View.Algorithms import astar, buscar_nodo_en_grafoBFS, bidirectional_search
 
 
 class Controller():
@@ -38,77 +38,18 @@ class Controller():
 
         if algorith == "A*":
             print("estrella")
-            path = self.astar(self.grafo.grafoDiccionario, ini, fin)
+            path = astar(self.grafo, ini, fin)
             self.drawPath(path)
-            print(path)
-            print(type(path))
-            print(type(path[0]))
+
         elif algorith == "BIDIRECCIONAL":
             print("bidireccional")
-            path = self.buscar_nodo_en_grafoBFS(self.grafo.grafoDiccionario, ini, fin)
+            path = bidirectional_search(self.grafo, ini, fin)
             self.drawPath(path)
-            print(path)
-            print(type(path))
-            print(type(path[0]))
+
         else:
             print("bfs")
-            path = self.buscar_nodo_en_grafoBFS(self.grafo.grafoDiccionario, ini, fin)
+            path = buscar_nodo_en_grafoBFS(self.grafo, ini, fin)
             self.drawPath(path)
-            print(path)
-            print(type(path))
-            print(type(path[0]))
-        #for i in path:
-
-         #   print(i)
-        #print(type(path))
-
-    def buscar_nodo_en_grafoBFS(self, grafo, nodo_inicio, nodo_objetivo):
-        visitados = set()
-        cola = deque([(nodo_inicio, [])])
-
-        while cola:
-            nodo, camino = cola.popleft()
-            if nodo == nodo_objetivo:
-                return camino + [nodo]
-
-            if nodo not in visitados:
-                visitados.add(nodo)
-                for vecino in grafo[nodo]:
-                    cola.append((vecino, camino + [nodo]))
-        return None
-
-    def heuristic(slef, node, goal):
-        return math.sqrt((goal.getX() - node.getX()) ** 2 + (goal.getY() - node.getY()) ** 2)
-    def astar(self, graph, start, goal): # algoritmo A*
-        open_list = []
-        closed_list = set()
-        heapq.heappush(open_list, (0, start))
-        g_scores = {start: 0}
-        parents = {}
-
-        while open_list:
-            current_cost, current_node = heapq.heappop(open_list)
-
-            if current_node == goal:
-                path = []
-                while current_node in parents:
-                    path.append(current_node)
-                    current_node = parents[current_node]
-                path.append(start)
-                path.reverse()
-                return path
-
-            closed_list.add(current_node)
-
-            for neighbor in graph.getNeighbors(current_node):
-                g_score = g_scores[current_node] + 1
-                if neighbor not in g_scores or g_score < g_scores[neighbor]:
-                    g_scores[neighbor] = g_score
-                    f_score = g_score + self.heuristic(neighbor, goal)
-                    heapq.heappush(open_list, (f_score, neighbor))
-                    parents[neighbor] = current_node
-
-        return None
 
     def drawBackground(self):
         for n in self.nodes:
