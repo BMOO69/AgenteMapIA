@@ -4,14 +4,14 @@ from Model.Arist import Arist
 from Model.Vertexx import Vertexx
 
 
-class ManagerFile(object):
+#class ManagerFile(object):
+class ManagerFile():
+    #__instance = None
 
-    __instance = None
-
-    def __new__(cls, *args, **kwargs):
-        if ManagerFile.__instance is None:
-            ManagerFile.__instance = object.__new__(cls)
-        return ManagerFile.__instance
+    #def __new__(cls, *args, **kwargs):
+    #    if ManagerFile.__instance is None:
+    #        ManagerFile.__instance = object.__new__(cls)
+    #    return ManagerFile.__instance
 
     def obtenerGrafo(self):
         fileedge = open("aristaGra.txt","r")

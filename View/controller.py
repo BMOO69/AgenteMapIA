@@ -1,3 +1,5 @@
+import heapq
+import math
 import time
 import tkinter as tk
 from collections import deque
@@ -31,16 +33,36 @@ class Controller():
         goal = self.app.entry_destination.get()
         ini = self.grafo.getVertex(start)
         fin = self.grafo.getVertex(goal)
-        print(type(ini))
-        path = self.buscar_nodo_en_grafo(self.grafo.grafoDiccionario, ini, fin)
 
-        self.drawPath(path)
-        for i in path:
+        algorith = self.app.option_algorith.get()
 
-            print(i)
-        print(type(path))
+        if algorith == "A*":
+            print("estrella")
+            path = self.astar(self.grafo.grafoDiccionario, ini, fin)
+            self.drawPath(path)
+            print(path)
+            print(type(path))
+            print(type(path[0]))
+        elif algorith == "BIDIRECCIONAL":
+            print("bidireccional")
+            path = self.buscar_nodo_en_grafoBFS(self.grafo.grafoDiccionario, ini, fin)
+            self.drawPath(path)
+            print(path)
+            print(type(path))
+            print(type(path[0]))
+        else:
+            print("bfs")
+            path = self.buscar_nodo_en_grafoBFS(self.grafo.grafoDiccionario, ini, fin)
+            self.drawPath(path)
+            print(path)
+            print(type(path))
+            print(type(path[0]))
+        #for i in path:
 
-    def buscar_nodo_en_grafo(self, grafo, nodo_inicio, nodo_objetivo):
+         #   print(i)
+        #print(type(path))
+
+    def buscar_nodo_en_grafoBFS(self, grafo, nodo_inicio, nodo_objetivo):
         visitados = set()
         cola = deque([(nodo_inicio, [])])
 
@@ -53,6 +75,39 @@ class Controller():
                 visitados.add(nodo)
                 for vecino in grafo[nodo]:
                     cola.append((vecino, camino + [nodo]))
+        return None
+
+    def heuristic(slef, node, goal):
+        return math.sqrt((goal.getX() - node.getX()) ** 2 + (goal.getY() - node.getY()) ** 2)
+    def astar(self, graph, start, goal): # algoritmo A*
+        open_list = []
+        closed_list = set()
+        heapq.heappush(open_list, (0, start))
+        g_scores = {start: 0}
+        parents = {}
+
+        while open_list:
+            current_cost, current_node = heapq.heappop(open_list)
+
+            if current_node == goal:
+                path = []
+                while current_node in parents:
+                    path.append(current_node)
+                    current_node = parents[current_node]
+                path.append(start)
+                path.reverse()
+                return path
+
+            closed_list.add(current_node)
+
+            for neighbor in graph.getNeighbors(current_node):
+                g_score = g_scores[current_node] + 1
+                if neighbor not in g_scores or g_score < g_scores[neighbor]:
+                    g_scores[neighbor] = g_score
+                    f_score = g_score + self.heuristic(neighbor, goal)
+                    heapq.heappush(open_list, (f_score, neighbor))
+                    parents[neighbor] = current_node
+
         return None
 
     def drawBackground(self):
@@ -71,9 +126,10 @@ class Controller():
         if path[0] != None:
             start = path[0]
             for fs in range(1,len(path)):
-                node_origin = start.getXY()
-                node_dest = path[fs].getXY()
+                node_origin = (start.getX(),start.getY())
+                node_dest = (path[fs].getX(),path[fs].getY())
                 self.drawEdge(node_origin[0], node_origin[1], node_dest[0], node_dest[1], "red")
+                #self.drawEdge(start.getX(), start.getY(), path[fs].getY(),path[fs].getY(), "red")
                 start = path[fs]
         else:
             print("esta vacia")

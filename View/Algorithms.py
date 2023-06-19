@@ -1,11 +1,6 @@
 import heapq
 import math
-
-from Model.GrafoNoDirigido import GrafoNoDirigido
-from Model.ManagerFile import ManagerFile
-from Model.Vertexx import Vertexx
-
-
+from collections import deque
 
 
 def heuristic(node, goal):
@@ -43,25 +38,20 @@ def astar(graph, start, goal):
 
     return None
 
+def buscar_nodo_en_grafoBFS(grafo, nodo_inicio, nodo_objetivo):
+    visitados = set()
+    cola = deque([(nodo_inicio, [])])
 
-start_node = Vertexx('e1', 13, 83)
-goal_node = Vertexx('e7', 1207, 485)
+    while cola:
+        nodo, camino = cola.popleft()
+        if nodo == nodo_objetivo:
+            return camino + [nodo]
 
-manage = ManagerFile()
-gra = GrafoNoDirigido
+        if nodo not in visitados:
+            visitados.add(nodo)
+            for vecino in grafo.grafoDiccionario[nodo]:
+                cola.append((vecino, camino + [nodo]))
+    return None
 
-graph = manage.obGrafoSinText(gra)
 
-path = astar(graph, start_node, goal_node)
 
-if path:
-    print("Ruta encontrada:")
-    for node in path:
-        print(node)
-else:
-    print("No se encontró una ruta válida.")
-
-if __name__ == "__main__":
-    print("holita")
-    print(type(path))
-    print(type(path[0]))

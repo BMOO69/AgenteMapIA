@@ -1,6 +1,6 @@
 class Vertexx:
 
-    def __init__(self, name, x,y):
+    def __init__(self, name, x, y):
         self.name = name
         self.x = x
         self.y = y
@@ -22,6 +22,7 @@ class Vertexx:
     def getY(self):
         return self.y
     def __str__(self) -> str:
-        return self.name+str(self.x)+","+str(self.y)
-
+        return self.name+" ("+str(self.x)+","+str(self.y)+")"
+    def __repr__(self):
+        return self.name
 

@@ -50,6 +50,6 @@ class Grafo():
         for i in self.grafoDiccionario:  # todos los origenes o llaves
             for j in self.grafoDiccionario[i]:
                # allVertex += i.getName()  +"---> " + j.getName() + "\n"  # a donde puedes ir de este nodo
-                allVertex += i.getName() + str(i.getXY())+" ---> "+j.getName()+str(j.getXY())+"\n"
+                allVertex += i.getName() + str(i.getX())+","+str(i.getY())+" ---> "+j.getName()+str(j.getX())+","+str(j.getY())+"\n"
                                # nombre 1         x1  y1             nombre 2    x2   y2
         return allVertex

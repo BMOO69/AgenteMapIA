@@ -55,7 +55,10 @@ aqui estarara el mapa"""
         self.entry_destination.grid(row=4, column=0, sticky=tk.NSEW, pady=5, padx=5)
 
         self.send_agent_button = ctk.CTkButton(self.options_frame, text="Enviar",command=lambda: self.buscar_ruta())
-        self.send_agent_button.grid(row=5, column=0, sticky=tk.NSEW)
+        self.send_agent_button.grid(row=5, column=0, sticky=tk.NSEW, pady=5, padx=5)
+
+        self.option_algorith= ctk.CTkOptionMenu(self.options_frame, values=["BFS", "A*", "BIDIRECCIONAL"])
+        self.option_algorith.grid(row=6, column=0, sticky=tk.NSEW, pady=5, padx=5)
 
         self.main_frame.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
 
