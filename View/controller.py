@@ -1,3 +1,5 @@
+import heapq
+import math
 import time
 import tkinter as tk
 from collections import deque
@@ -8,7 +10,7 @@ from PIL.ImageTk import PhotoImage
 
 from Model.GrafoNoDirigido import GrafoNoDirigido
 from Model.ManagerFile import ManagerFile
-
+from View.Algorithms import astar, buscar_nodo_en_grafoBFS, bidirectional_search
 
 
 class Controller():
@@ -31,46 +33,46 @@ class Controller():
         goal = self.app.entry_destination.get()
         ini = self.grafo.getVertex(start)
         fin = self.grafo.getVertex(goal)
-        print(type(ini))
-        path = self.buscar_nodo_en_grafo(self.grafo.grafoDiccionario, ini, fin)
 
-        self.drawPath(path)
-        for i in path:
+        algorith = self.app.option_algorith.get()
 
-            print(i)
-        print(type(path))
+        if algorith == "A*":
+            print("estrella")
+            path = astar(self.grafo, ini, fin)
+            self.drawPath(path)
 
-    def buscar_nodo_en_grafo(self, grafo, nodo_inicio, nodo_objetivo):
-        visitados = set()
-        cola = deque([(nodo_inicio, [])])
+        elif algorith == "BIDIRECCIONAL":
+            print("bidireccional")
+            path = bidirectional_search(self.grafo, ini, fin)
+            self.drawPath(path)
 
-        while cola:
-            nodo, camino = cola.popleft()
-            if nodo == nodo_objetivo:
-                return camino + [nodo]
-
-            if nodo not in visitados:
-                visitados.add(nodo)
-                for vecino in grafo[nodo]:
-                    cola.append((vecino, camino + [nodo]))
-        return None
+        else:
+            print("bfs")
+            path = buscar_nodo_en_grafoBFS(self.grafo, ini, fin)
+            self.drawPath(path)
 
 
     def drawBackground(self):
         for n in self.nodes:
             valor = self.grafo.grafoDiccionario[n]
             for nod in valor:
-                node_origin = n.getXY()
-                node_dest = nod.getXY()
-                self.drawEdge(node_origin[0],node_origin[1], node_dest[0],node_dest[1], "#7DA0CA")
+                #node_origin = n.getXY()
+                #node_dest = nod.getXY()
+                node_ori_x = n.getX()
+                node_ori_y = n.getY()
+                node_dest_x = nod.getX()
+                node_dest_y = nod.getY()
+                self.drawEdge(node_ori_x,node_ori_y, node_dest_x,node_dest_y, "#7DA0CA")
 
     def drawPath(self, path):
         if path[0] != None:
             start = path[0]
             for fs in range(1,len(path)):
-                node_origin = start.getXY()
-                node_dest = path[fs].getXY()
-                self.drawEdge(node_origin[0], node_origin[1], node_dest[0], node_dest[1], "red")
+                node_origin = (start.getX(),start.getY())
+                node_dest = (path[fs].getX(),path[fs].getY())
+                #self.drawEdge(node_origin[0], node_origin[1], node_dest[0], node_dest[1], "red")
+                self.drawEdge(node_origin[0], node_origin[1], node_dest[0], node_dest[1], self.app.color)
+                #self.drawEdge(start.getX(), start.getY(), path[fs].getY(),path[fs].getY(), "red")
                 start = path[fs]
         else:
             print("esta vacia")
@@ -97,7 +99,7 @@ class Controller():
         imagen_tk_mall = ImageTk.PhotoImage(imagen_redi_mall)
 
         for nod in self.nodes:
-            node = nod.getXY()
+            node = (nod.getX(),nod.getY())
             node_id = nod.getName()
             (x, y) = node
             var = "".join(filter(lambda char: not char.isdigit(), node_id))

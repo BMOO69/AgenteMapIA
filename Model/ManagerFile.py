@@ -4,14 +4,14 @@ from Model.Arist import Arist
 from Model.Vertexx import Vertexx
 
 
-class ManagerFile(object):
+#class ManagerFile(object):
+class ManagerFile():
+    #__instance = None
 
-    __instance = None
-
-    def __new__(cls, *args, **kwargs):
-        if ManagerFile.__instance is None:
-            ManagerFile.__instance = object.__new__(cls)
-        return ManagerFile.__instance
+    #def __new__(cls, *args, **kwargs):
+    #    if ManagerFile.__instance is None:
+    #        ManagerFile.__instance = object.__new__(cls)
+    #    return ManagerFile.__instance
 
     def obtenerGrafo(self):
         fileedge = open("aristaGra.txt","r")
@@ -26,35 +26,35 @@ class ManagerFile(object):
     def obGrafoSinText(self,graph):
         #g = GrafoNoDirigido()
         g = graph()
-        g.addVertex(Vertexx('e1', (13, 83)))
-        g.addVertex(Vertexx('e2', (13, 346)))
-        g.addVertex(Vertexx('e3', (13, 570)))
-        g.addVertex(Vertexx('e4', (305, 660)))
-        g.addVertex(Vertexx('e5', (790, 660)))
-        g.addVertex(Vertexx('e6', (1150, 660)))
-        g.addVertex(Vertexx('e7', (1207, 485)))
-        g.addVertex(Vertexx('e8', (1207, 286)))
-        g.addVertex(Vertexx('e9', (1207, 34)))
-        g.addVertex(Vertexx('e10', (700, 13)))
+        g.addVertex(Vertexx('e1', 13, 83))
+        g.addVertex(Vertexx('e2', 13, 346))
+        g.addVertex(Vertexx('e3', 13, 570))
+        g.addVertex(Vertexx('e4', 305, 660))
+        g.addVertex(Vertexx('e5', 790, 660))
+        g.addVertex(Vertexx('e6', 1150, 660))
+        g.addVertex(Vertexx('e7', 1207, 485))
+        g.addVertex(Vertexx('e8', 1207, 286))
+        g.addVertex(Vertexx('e9', 1207, 34))
+        g.addVertex(Vertexx('e10',700, 13))
         #g.getVertex(Vertexx('e11', (390, 12)))
-        g.addVertex(Vertexx('colegio1', (210, 85)))
-        g.addVertex(Vertexx('hospital2', (214, 342)))
-        g.addVertex(Vertexx('mall3', (217, 457)))
-        g.addVertex(Vertexx('parque4', (430, 565)))
-        g.addVertex(Vertexx('nn5', (790, 565)))
-        g.addVertex(Vertexx('nn6', (988, 566)))
-        g.addVertex(Vertexx('nn7', (509, 81)))
-        g.addVertex(Vertexx('nn8', (600, 127)))
-        g.addVertex(Vertexx('nn9', (421, 344)))
-        g.addVertex(Vertexx('nn10', (574, 451)))
-        g.addVertex(Vertexx('nn11', (750, 43)))
-        g.addVertex(Vertexx('nn12', (741, 201)))
-        g.addVertex(Vertexx('nn13', (765, 286)))
-        g.addVertex(Vertexx('nn14', (790, 484)))
-        g.addVertex(Vertexx('nn15', (843, 94)))
-        g.addVertex(Vertexx('nn16', (979, 167)))
-        g.addVertex(Vertexx('nn17', (1069, 287)))
-        g.addVertex(Vertexx('nn18', (1115, 487)))
+        g.addVertex(Vertexx('colegio1',210, 85))
+        g.addVertex(Vertexx('hospital2', 214, 342))
+        g.addVertex(Vertexx('mall3', 217, 457))
+        g.addVertex(Vertexx('parque4', 430, 565))
+        g.addVertex(Vertexx('nn5', 790, 565))
+        g.addVertex(Vertexx('nn6', 988, 566))
+        g.addVertex(Vertexx('nn7', 509, 81))
+        g.addVertex(Vertexx('nn8', 600, 127))
+        g.addVertex(Vertexx('nn9', 421, 344))
+        g.addVertex(Vertexx('nn10', 574, 451))
+        g.addVertex(Vertexx('nn11', 750, 43))
+        g.addVertex(Vertexx('nn12', 741, 201))
+        g.addVertex(Vertexx('nn13', 765, 286))
+        g.addVertex(Vertexx('nn14', 790, 484))
+        g.addVertex(Vertexx('nn15', 843, 94))
+        g.addVertex(Vertexx('nn16', 979, 167))
+        g.addVertex(Vertexx('nn17', 1069, 287))
+        g.addVertex(Vertexx('nn18', 1115, 487))
 
         g.addArist(Arist(g.getVertex('e1'), g.getVertex('colegio1')))
         g.addArist(Arist(g.getVertex('colegio1'), g.getVertex('hospital2')))
