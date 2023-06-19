@@ -9,7 +9,7 @@ class Vertexx:
         return hash((self.name, self.posXY))
     def __eq__(self, other):
         if isinstance(other, Vertexx):
-            if other.getName() == self.name:
+            if other.getName() == self.name and self.posXY == other.posXY:
                 return True
         else:
             return False

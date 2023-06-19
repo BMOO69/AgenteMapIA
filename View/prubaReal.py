@@ -1,5 +1,4 @@
 import heapq
-import math
 
 from Model.GrafoNoDirigido import GrafoNoDirigido
 from Model.ManagerFile import ManagerFile
@@ -8,15 +7,7 @@ from Model.Vertexx import Vertexx
 
 def heuristic(node, goal):
     # Función heurística, en este caso, la distancia Manhattan
-    ni = node.getPX()
-    nd = goal.posXY()
-    x1, y1 = ni
-    x2, y2 = nd
-
-    distancia = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
-    return distancia
-
-    #return abs(node.x - goal.x) + abs(node.y - goal.y)
+    return abs(node[1][0] - goal[1][0]) + abs(node[1][1] - goal[1][1])
 
 def astar(graph, start, goal):
     # Inicialización
@@ -57,50 +48,38 @@ def astar(graph, start, goal):
 
 # Ejemplo de uso
 
-# Clase para representar los objetos en el grafo
-"""
-class Objeto:
-    def __init__(self, x, y):
-        self.x = x
-        self.y = y
-
-    def __eq__(self, other):
-        return isinstance(other, Objeto) and self.x == other.x and self.y == other.y
-
-    def __hash__(self):
-        return hash((self.x, self.y))
-
-    def __lt__(self, other):
-        return False
-
 # Grafo de ejemplo representado como un diccionario
-graph = {
-    Objeto(0, 0): [Objeto(1, 0), Objeto(0, 1)],
-    Objeto(1, 0): [Objeto(0, 0), Objeto(1, 1)],
-    Objeto(0, 1): [Objeto(0, 0), Objeto(1, 1)],
-    Objeto(1, 1): [Objeto(1, 0), Objeto(0, 1)]
-}
-
-start_node = Objeto(0, 0)
-goal_node = Objeto(1, 1)
 """
-inicio = Vertexx('e1', (13, 83))
-final = Vertexx('n4', (430, 565))
+graph = {
+    ("A", (0, 0)): [("B", (1, 0)), ("C", (0, 1))],
+    ("B", (1, 0)): [("A", (0, 0)), ("D", (1, 1))],
+    ("C", (0, 1)): [("A", (0, 0)), ("D", (1, 1))],
+    ("D", (1, 1)): [("B", (1, 0)), ("C", (0, 1))]
+}"""
 
-manage = ManagerFile()
-gra = manage.obGrafoSinText(GrafoNoDirigido)
+start_node = Vertexx('e1', (13, 83))
+goal_node = Vertexx('n9', (421, 344))
 
-path = astar(gra, inicio, final)
+manage = ManagerFile
+grafo = GrafoNoDirigido
+#graph = manage.obGrafoSinText(GrafoNoDirigido)
+graph = ManagerFile.obGrafoSinText(grafo)
+#start_node = ("A", (0, 0))
+#goal_node = ("D", (1, 1))
+
+
+
+path = astar(graph, start_node, goal_node)
 
 if path:
     print("Ruta encontrada:")
     for node in path:
-        print(f"({node.x}, {node.y})")
+        print(node)
 else:
     print("No se encontró una ruta válida.")
 
 
 if __name__ == "__main__":
-    print("hola mundo")
+    print(" gola adasdasd")
 
 
