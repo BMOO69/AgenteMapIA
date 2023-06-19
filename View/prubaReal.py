@@ -1,3 +1,4 @@
+
 import heapq
 
 from Model.GrafoNoDirigido import GrafoNoDirigido
