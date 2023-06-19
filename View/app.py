@@ -32,7 +32,6 @@ class AppWindow(ctk.CTk):
         self.nuevaima = self.ima.resize((1200,650))
 
         self.gf = ImageTk.PhotoImage(self.nuevaima)
-        #imagen_redimensionada = self.gf.resize((1200, 650))
         self.img_frame = ctk.CTkCanvas(self.main_frame, width=1200, height=650, bg="#0E6063")
         self.img_frame.grid(row=0, column=1, sticky=tk.NSEW, ipadx=10, ipady=10, padx=(0,10))
         self.img_frame.create_image(10, 10, image=self.gf, anchor=tk.NW)
