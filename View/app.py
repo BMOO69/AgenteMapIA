@@ -4,7 +4,6 @@ import customtkinter as ctk
 import tkinter as tk
 from PIL import ImageTk, Image
 
-
 from View.controller import Controller
 
 ctk.set_appearance_mode("System")
@@ -19,6 +18,7 @@ class AppWindow(ctk.CTk):
         self.resizable(False,False)
         self.update_idletasks()
         self.color = "red"
+        self.objetos =[]
 
         self.main_frame = ctk.CTkFrame(self,width=1200,height=650)
         self.main_frame.columnconfigure(0, weight=1)
@@ -32,7 +32,7 @@ class AppWindow(ctk.CTk):
         self.nuevaima = self.ima.resize((1200,650))
 
         self.gf = ImageTk.PhotoImage(self.nuevaima)
-        #imagen_redimensionada = self.gf.resize((1200, 650))
+
         self.img_frame = ctk.CTkCanvas(self.main_frame, width=1200, height=650, bg="#0E6063")
         self.img_frame.grid(row=0, column=1, sticky=tk.NSEW, ipadx=10, ipady=10, padx=(0,10))
         self.img_frame.create_image(10, 10, image=self.gf, anchor=tk.NW)
@@ -66,7 +66,7 @@ class AppWindow(ctk.CTk):
 
         self.text_box = ctk.CTkTextbox(self.options_frame, width=100, height=200)
         self.text_box.grid(row=9,column=0,sticky=tk.NSEW, pady=5, padx=5)
-        self.text_box.configure(state="disabled")
+        #self.text_box.configure(state="disabled")
 
         self.main_frame.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
 
@@ -74,20 +74,20 @@ class AppWindow(ctk.CTk):
         colorr = colorchooser.askcolor(title="Seleccionar color")
         if colorr[1] is not None:
             self.color= colorr[1]
+
     def clean_roads(self):
         pass
 
     def paint_graph(self):
         pass
 
-
     def clear_graph(self):
         pass
 
     def buscar_ruta(self):
         pass
+
 app = AppWindow()
 ctr = Controller(app)
 if __name__ == "__main__":
-
-    print("asdasd")
+    print("")

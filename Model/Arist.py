@@ -13,5 +13,3 @@ class Arist:
     
     def __str__(self) -> str:
         return self.origen.getName()+"  ------>  "+self.destino.getName()
-    
-

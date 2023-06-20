@@ -1,12 +1,8 @@
-import heapq
 import math
-import time
-import tkinter as tk
-from collections import deque
+import tkinter
+
 import customtkinter as ctk
 from PIL import Image, ImageTk
-#from PIL.Image import Image
-from PIL.ImageTk import PhotoImage
 
 from Model.GrafoNoDirigido import GrafoNoDirigido
 from Model.ManagerFile import ManagerFile
@@ -51,13 +47,13 @@ class Controller():
             path = buscar_nodo_en_grafoBFS(self.grafo, ini, fin)
             self.drawPath(path)
 
+        for i in self.app.objetos:
+            self.app.text_box.insert("end", i+"\n")
 
     def drawBackground(self):
         for n in self.nodes:
             valor = self.grafo.grafoDiccionario[n]
             for nod in valor:
-                #node_origin = n.getXY()
-                #node_dest = nod.getXY()
                 node_ori_x = n.getX()
                 node_ori_y = n.getY()
                 node_dest_x = nod.getX()
@@ -66,14 +62,26 @@ class Controller():
 
     def drawPath(self, path):
         if path[0] != None:
+            Fdistancia = 0
             start = path[0]
             for fs in range(1,len(path)):
                 node_origin = (start.getX(),start.getY())
                 node_dest = (path[fs].getX(),path[fs].getY())
-                #self.drawEdge(node_origin[0], node_origin[1], node_dest[0], node_dest[1], "red")
+
+                distan = self.distance(start.getX(), start.getY(), path[fs].getX(), path[fs].getY())
+                Fdistancia += distan
+
                 self.drawEdge(node_origin[0], node_origin[1], node_dest[0], node_dest[1], self.app.color)
-                #self.drawEdge(start.getX(), start.getY(), path[fs].getY(),path[fs].getY(), "red")
                 start = path[fs]
+
+
+            total = f"de: {path[0].getName()} y {path[(len(path))-1].getName()}"
+            totaldis = f"distancia: {int(Fdistancia)} m"
+            tiempo = Fdistancia / 1.1
+            tiem = f"tiempo : {int(tiempo / 60)} min"
+            var = total+"\n"+totaldis+"\n"+tiem+"\n"
+            self.app.objetos.clear()
+            self.app.objetos.append(var)
         else:
             print("esta vacia")
 
@@ -137,3 +145,19 @@ class Controller():
 
     def clear(self):
         self.drawBackground()
+        self.repaintNodes()
+        self.app.text_box.delete("1.0",tkinter.END)
+
+    def distance(self, x1, y1, x2, y2):
+        distance = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+        return distance
+
+    def repaintNodes(self):
+        for nod in self.nodes:
+            node = (nod.getX(), nod.getY())
+            node_id = nod.getName()
+            (x, y) = node
+            var = "".join(filter(lambda char: not char.isdigit(), node_id))
+            if var == "nn" or var == "e":
+                self.app.img_frame.create_oval(x - 15, y - 15, x + 15, y + 15, fill="blue")
+                self.app.img_frame.create_text(x, y, text=node_id)

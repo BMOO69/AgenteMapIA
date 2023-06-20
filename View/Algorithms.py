@@ -2,7 +2,6 @@ import heapq
 import math
 from collections import deque
 
-
 def heuristic(node, goal):
 
     return math.sqrt((goal.getX()-node.getX())**2+(goal.getY()-node.getY())**2)
